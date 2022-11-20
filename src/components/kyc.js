@@ -13,22 +13,28 @@ export default function KycForm() {
     const { user, setUser } = useContext(UserContext)
     useEffect(() => {
         if (user === null) navigate('/')
+        if (user.kycVerified === true) navigate('/user')
     }, [])
     let navigate = useNavigate()
+    const token = JSON.parse(localStorage.getItem('token'))
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
             setLoading(true);
-            const { data } = await axios.post(`${API}/kyc`, {
-                pan,
-                dob,
-            });
+            // return
+            const { data } = await axios.post(`${API}/kyc`,
+                {
+                    panNumber: pan,
+                    dateOfBirth: dob,
+                },
+                { headers: { token: token } },);
             console.log("Register responce", data);
             if (!data.success) {
                 // console.log(data.message)
                 throw Error(data.message)
             }
-            toast.success(" Registeration Successful... Please Login");
+            toast.success(" KYC successful ");
             setLoading(false);
             setPan("");
             setDob("");
@@ -82,8 +88,6 @@ export default function KycForm() {
                     {loading ? <SyncOutlined spin /> : "Submit"}
                 </button>
             </form>
-
-
         </div>
     )
 }

@@ -41,7 +41,7 @@ function Navbar() {
                         <div class="navbar-nav">
                             {user ? (
                                 <>
-                                    <button class="btn btn-primary nav-link m-2" onClick={() => navigate('/kyc')} style={{ color: 'white' }}>Kyc</button>
+                                    {user?.kycVerified ? <button class="btn btn-primary nav-link m-2" onClick={() => navigate('/kyc')} style={{ color: 'white' }}>Kyc</button> : <button class="btn btn-primary nav-link m-2" onClick={() => navigate('/profile')} style={{ color: 'white' }}>Profile</button>}
                                     < button class="nav-link btn btn-primary m-2" onClick={handleLogout} style={{ color: 'white' }}>Logout</button>
 
                                 </>

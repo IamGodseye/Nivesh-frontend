@@ -1,12 +1,14 @@
 import React from 'react'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
-import CryptoDashboard from '../components/dashboard'
-export default function Index() {
+
+import Orders from '../components/orders'
+
+export default function OrderDashboard() {
     return (
         <div>
             <Navbar />
-            <CryptoDashboard />
+            <Orders />
             <Footer />
         </div>
     )

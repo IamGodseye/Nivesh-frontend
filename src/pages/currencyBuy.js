@@ -1,12 +1,13 @@
 import React from 'react'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
-import CryptoDashboard from '../components/dashboard'
-export default function Index() {
+import CurrencyBuyComp from '../components/currencyBuy'
+
+export default function CurrencyBuy() {
     return (
         <div>
             <Navbar />
-            <CryptoDashboard />
+            <CurrencyBuyComp />
             <Footer />
         </div>
     )

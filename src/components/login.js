@@ -53,6 +53,7 @@ function LoginForm() {
         <div className="m-3" style={{ minHeight: '80vh' }}>
             {/* {user === null ? 'NULL' : 'else'} */}
             <h1 className="text-center square mb-3 mt-3">Login</h1>
+
             <form
                 onSubmit={handleSubmit}
             >

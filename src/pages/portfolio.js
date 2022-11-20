@@ -1,12 +1,13 @@
 import React from 'react'
 import Navbar from '../components/navbar'
 import Footer from '../components/footer'
-import CryptoDashboard from '../components/dashboard'
-export default function Index() {
+import PortfolioComponent from '../components/portfolio'
+
+export default function Portfolio() {
     return (
         <div>
             <Navbar />
-            <CryptoDashboard />
+            <PortfolioComponent />
             <Footer />
         </div>
     )
