@@ -58,7 +58,6 @@ export default function KycForm() {
             setLoading(false);
             setPan("");
             setDob("");
-
             navigate('/');
         }
         catch (error) {
