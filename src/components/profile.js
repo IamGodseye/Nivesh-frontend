@@ -60,8 +60,8 @@ export default function ProfileComponent() {
     return (
         <>
             ProfileComponent
-            <div className=' d-flex justify-content-center flex-column' >
-                <div className=' d-flex justify-content-center align-items-center' style={{ minHeight: '80vh' }}>
+            <div className=' d-flex justify-content-center flex-column p-5' style={{ height: '80vh' }} >
+                <div className=' d-flex justify-content-center align-items-center' style={{ minHeight: '60vh' }}>
 
                     <div class="card">
                         <div class="card-header">

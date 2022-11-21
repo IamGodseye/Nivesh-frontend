@@ -22,7 +22,28 @@ export default function WalletComponent() {
     useEffect(() => {
         if (user === null) navigate('/')
         fetchWallet()
+        fetchUser()
     }, [])
+
+    const fetchUser = async () => {
+        try {
+            // const token = window.localStorage.getItem("token");
+            console.log("FETCH USER =>>>");
+            const { data } = await axios.get(`${API}/get-profile`,
+
+                { headers: { token: token } },);
+            console.log(data);
+            // setWalletId(data.user.walletId)
+            setUser(data.user)
+            if (data.success !== true) {
+                throw Error("User data corrupted...plz Login again")
+            }
+        } catch (err) {
+            console.log(err);
+            // setOk(false);
+            navigate("/login");
+        }
+    };
 
     function loadScript(src) {
         return new Promise((resolve) => {
@@ -120,8 +141,8 @@ export default function WalletComponent() {
     return (
         <>
             WalletComponent
-            <div className=' d-flex justify-content-center flex-column' >
-                <div className=' d-flex justify-content-center align-items-center' style={{ minHeight: '80vh' }}>
+            <div className=' d-flex justify-content-center flex-column' style={{ minHeight: '80vh' }}>
+                <div className=' d-flex justify-content-center align-items-center' style={{ minHeight: '60vh' }}>
 
                     <div class="card">
                         <div class="card-header">
@@ -134,7 +155,7 @@ export default function WalletComponent() {
                             <blockquote class="blockquote mb-0">
                                 User Wallet Id: {user.walletId}
                                 <br></br>
-                                Balance: {user.email}
+                                Email: {user.email}
                                 {/* <footer class="blockquote-footer">Someone famous in <cite title="Source Title">Source Title</cite></footer> */}
                             </blockquote>
                         </div>
