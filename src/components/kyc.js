@@ -12,11 +12,32 @@ export default function KycForm() {
     const [loading, setLoading] = useState("");
     const { user, setUser } = useContext(UserContext)
     useEffect(() => {
+
         if (user === null) navigate('/')
+        fetchUser()
         if (user.kycVerified === true) navigate('/user')
+
     }, [])
     let navigate = useNavigate()
     const token = JSON.parse(localStorage.getItem('token'))
+
+    const fetchUser = async () => {
+        try {
+            // const token = window.localStorage.getItem("token");
+            console.log("FETCH USER =>>>");
+            const { data } = await axios.get(`${API}/get-profile`,
+
+                { headers: { token: token } },);
+            console.log(data);
+            if (data.success !== true) {
+                throw Error("User data corrupted...plz Login again")
+            }
+        } catch (err) {
+            console.log(err);
+            // setOk(false);
+            navigate("/login");
+        }
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -28,10 +49,9 @@ export default function KycForm() {
                     panNumber: pan,
                     dateOfBirth: dob,
                 },
-                { headers: { token: token } },);
-            console.log("Register responce", data);
-            if (!data.success) {
-                // console.log(data.message)
+                { headers: { token: token } });
+            console.log("KYC responce", data);
+            if (data.success === false) {
                 throw Error(data.message)
             }
             toast.success(" KYC successful ");
